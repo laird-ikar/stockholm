@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:06:35 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:07:22 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ Stockholm::Stockholm(void): _path(std::filesystem::path{getenv("HOME") + std::st
 	this->_version = false;
 	this->_silent = false;
 	this->_reverse = false;
-	this->_key = "";
 }
 
 Stockholm::~Stockholm(void)
