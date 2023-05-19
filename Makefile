@@ -34,12 +34,13 @@ fclean:			clean
 re:				fclean all
 
 test:
+				@rm -rf ~/infection/*
 				@mkdir -p ~/infection/mon_sous_dossier
 				@echo "Je suis un fichier txt" > ~/infection/texte.txt
 				@echo "je suis classe, bg n'est il pas" > ~/infection/ma_classe.class
 				@echo "camion ? pouet poueeeeeeet" > ~/infection/archive.zip
 				@cp -r $(addsuffix .cpp, $(addprefix $(SRCS_FOLD), $(SRCS_FILE))) ~/infection/mon_sous_dossier
 				@chmod 000 ~/infection/archive.zip
-				printf "Fichiers tests créés\n\n"
+				@printf "Fichiers tests créés\n\n"
 
 .PHONY:			all clean fclean re .cpp.o test
