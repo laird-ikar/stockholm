@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 16:31:33 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:32:38 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 		new_path.replace_extension("");
 
 		int fd_old = open(path.c_str(), O_RDONLY);
-		int fd_new = open(new_path.c_str(), O_WRONLY | O_CREAT, std::filesystem::permissions(path).permissions());
+		int fd_new = open(new_path.c_str(), O_WRONLY | O_CREAT, std::filesystem::status(path).permissions());
 
 		if (fd_old == -1 || fd_new == -1)
 		{
@@ -211,7 +211,7 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		new_path.replace_extension(path.extension().string() + ".ft");
 
 		int fd_old = open(path.c_str(), O_RDONLY);
-		int fd_new = open(new_path.c_str(), O_WRONLY | O_CREAT, std::filesystem::permissions(path).permissions());
+		int fd_new = open(new_path.c_str(), O_WRONLY | O_CREAT, std::filesystem::status(path).permissions());
 
 		if (fd_old == -1 || fd_new == -1)
 		{
