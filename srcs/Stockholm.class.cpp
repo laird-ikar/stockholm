@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:15:59 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:18:12 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,14 @@ void	Stockholm::_decipher(std::filesystem::path path)
 	{
 		std::cout << "Error while decyphering: path " << path << " does not exist" << std::endl;
 		return ;
+	}
+	for (const auto & entry : std::filesystem::directory_iterator(path))
+	{
+		std::cout << entry.path() << std::endl;
+		if (std::filesystem::is_directory(entry.path()))
+			this->_decipher(entry.path());
+		else
+			this->_decipherFile(entry.path());
 	}
 }
 
