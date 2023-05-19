@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:00:45 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:01:43 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class Stockholm;
 #include <algorithm>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #include "constants.hpp"
 
