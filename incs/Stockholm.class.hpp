@@ -6,11 +6,11 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 12:50:34 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 12:58:25 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-class Stockholm;
+815class Stockholm;
 #pragma once
 
 #include <string>
@@ -27,7 +27,7 @@ private:
 	bool _silent;
 	bool _reverse;
 	std::string _key;
-	std::filesystem::path _path{"~/infection"};
+	const std::filesystem::path _path{"~/infection"};
 
 	void _printHelp(void);
 	void _printVersion(void);

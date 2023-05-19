@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 12:57:17 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 12:58:25 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	Stockholm::run(void)
 	else if (this->_version)
 		this->_printVersion();
 	else if (this->_reverse)
-		this->_decipher();
+		this->_decipher(this->_path);
 	else
 		this->_cipher(this->_path);
 }
