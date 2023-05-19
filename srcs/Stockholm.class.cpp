@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 10:26:36 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 10:40:40 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,21 @@ void	Stockholm::run(void)
 }
 
 void	Stockholm::_printHelp(void)
-{}
+{
+	std::cout << "Usage:" << std::endl;
+	std::cout << "\t./stockholm [-hv]" << std::endl;
+	std::cout << "\t./stockholm [-s] [-r] [-r key]" << std::endl;
+	std::cout << std::endl;
+	std::cout << "Description:" << std::endl;
+	std::cout << "\tstockholm is a 42 project that mimic the encyption of files, inspired by Wannacry but limited to the \"~/infection/\" folder. This project is for educational purposes only. You should never use the type of program for malicious purposes." << std::endl;
+	std::cout << std::endl;
+	std::cout << "Options:" << std::endl;
+	std::cout << "\t-h\t\tPrint this help message and exit" << std::endl;
+	std::cout << "\t-v\t\tPrint the version and exit" << std::endl;
+	std::cout << "\t-s\t\tSilent mode" << std::endl;
+	std::cout << "\t-r\t\tReverse mode, use the key to decrypt the files" << std::endl;
+	std::cout << std::endl;
+}
 
 void	Stockholm::_printVersion(void)
 {
