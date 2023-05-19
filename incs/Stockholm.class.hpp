@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:02:26 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:16:53 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ private:
 	bool _silent;
 	bool _reverse;
 	std::string _key;
-	const std::filesystem::path _path{"~/infection"};
+	const std::filesystem::path _path;
 
 	void _printHelp(void);
 	void _printVersion(void);

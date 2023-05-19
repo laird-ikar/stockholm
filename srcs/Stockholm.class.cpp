@@ -6,13 +6,13 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:03:16 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:16:53 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/Stockholm.class.hpp"
 
-Stockholm::Stockholm(void)
+Stockholm::Stockholm(void): _path(std::filesystem::path{getenv("HOME") + std::string("/infection/")})
 {
 	this->_help = false;
 	this->_version = false;
@@ -109,5 +109,8 @@ void	Stockholm::_cipher(std::filesystem::path path)
 
 void	Stockholm::_cipherFile(std::filesystem::path path)
 {
-	(void) path;
+	//check if the file path extension is in the RANSOMWARE_EXTENSIONS
+	
+
+	
 }
