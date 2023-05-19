@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 14:59:45 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:01:12 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 			std::cout << "Error while reading file " << path << std::endl;
 			return ;
 		}
-		for (int i = 0; i < file_data.length(); i++)
+		for (unsigned int i = 0; i < file_data.length(); i++)
 		{
 			file_data[i] ^= this->_key[i % this->_key.length()];
 		}
