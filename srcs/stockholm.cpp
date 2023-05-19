@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:38:47 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 10:28:21 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:16:25 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 			stockholm.setSilent(true);
 		else if (!strcmp(argv[i],"--reverse") || !strcmp(argv[i],"-v"))
 		{
-			if (i + 1 < argc)
+			if (i + 1 < argc && argv[i + 1][0] != 0)
 			{
 				stockholm.setReverse(true);
 				stockholm.setKey(argv[i + 1]);
