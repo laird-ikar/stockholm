@@ -6,13 +6,13 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:29:08 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 16:21:38 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 17:29:25 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define VERSION "0.2.1"
+#define VERSION "1.3.5"
 
 #define RANSOMWARE_EXTENSIONS 													\
         ".123", ".3dm", ".3ds", ".accdb", ".ai", ".aspx", ".asx", ".avi", 		\
