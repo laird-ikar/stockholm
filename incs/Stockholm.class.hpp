@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 11:30:24 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 12:50:34 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ private:
 
 	void _printHelp(void);
 	void _printVersion(void);
-	void _decipher(void);
-	void _cipher(void);
+	void _decipher(std::filesystem::path path);
+	void _cipher(std::filesystem::path path);
 
 public:
 	Stockholm(void);
