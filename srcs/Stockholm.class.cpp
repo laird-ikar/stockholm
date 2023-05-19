@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 14:54:40 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:58:02 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		std::filesystem::rename(path, newPath += ".ft");
 		if (!this->_silent)
 			std::cout << "Ciphering file " << path << std::endl;
-	} catch {
+	} catch(...) {
 		return ;
 	}
 }
