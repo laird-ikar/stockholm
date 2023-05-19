@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:01:33 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:03:16 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,3 +108,6 @@ void	Stockholm::_cipher(std::filesystem::path path)
 }
 
 void	Stockholm::_cipherFile(std::filesystem::path path)
+{
+	(void) path;
+}
