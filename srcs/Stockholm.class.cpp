@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 14:58:17 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:59:45 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		}
 		char *buffer = new char[1024];
 		int ret = 0;
-		string file_data = "";
+		std::string file_data = "";
 		while ((ret = read(fd, buffer, 1024)) > 0)
 		{
 			file_data += buffer;

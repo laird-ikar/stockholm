@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:39:14 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 14:59:15 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:59:51 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@
 
 #include <string>
 #include <cstring>
+#include <sys/stat.h>
 #include <fcntl.h>
