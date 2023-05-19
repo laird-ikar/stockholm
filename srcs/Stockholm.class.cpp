@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:23:50 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:52:27 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,21 @@ void	Stockholm::_printVersion(void)
 
 void	Stockholm::_decipher(std::filesystem::path path)
 {
+	if (!std::filesystem::exists(path) || !std::filesystem::is_directory(path))
+	{
+		std::cout << "Error while decyphering: path " << path << " does not exist" << std::endl;
+		return ;
+	}
+}
+
+void	Stockholm::_decipherFile(std::filesystem::path path)
+{
 	(void) path;
 }
 
+
 void	Stockholm::_cipher(std::filesystem::path path)
 {
-	std::cout << "ciphering " << path << std::endl;
-	std::cout << std::filesystem::exists(path) << std::endl;
 	if (!std::filesystem::exists(path) || !std::filesystem::is_directory(path))
 	{
 		std::cout << "Error while cyphering: path " << path << " does not exist" << std::endl;
@@ -112,9 +120,40 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 	//check if the file path extension is in the _extensions vector
 	if (std::find(this->_extensions.begin(), this->_extensions.end(), path.extension()) == this->_extensions.end())
 		return ;
+	//TODO: check permissions
+	if (std::filesystem::permissions(path) != std::filesystem::perms::owner_write)
+	{
+		return ;
+	}
 
-	std::cout << "Ciphering file " << path << std::endl;
-	//ciphe the file
+	if (!this->_silent)
+		std::cout << "Ciphering file " << path << std::endl;
+	//cipher the file
+	int fd = open(path.c_str(), O_RDWR);
+	if (fd == -1)
+	{
+		std::cout << "Error while opening file " << path << std::endl;
+		return ;
+	}
+	char *buffer = new char[1024];
+	int ret = 0;
+	string file_data = "";
+	while ((ret = read(fd, buffer, 1024)) > 0)
+	{
+		file_data += buffer;
+	}
+	if (ret == -1)
+	{
+		std::cout << "Error while reading file " << path << std::endl;
+		return ;
+	}
+	for (int i = 0; i < file_data.length(); i++)
+	{
+		file_data[i] ^= this->_key[i % this->_key.length()];
+	}
+	write(fd, file_data.c_str(), file_data.length());	
 
-	//rename the file
+	//add the .ft extension to the file
+	std::filesystem::path newPath = path;
+	std::filesystem::rename(path, newPath += ".ft");+
 }

