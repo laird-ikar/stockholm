@@ -19,7 +19,7 @@ RM			=	rm -f
 
 all:			$(NAME)
 
-$(NAME):		$(OBJS) $(CLASS_OBJS) $(INCS)
+$(NAME):		$(OBJS) $(CLASS_OBJS)
 				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 .cpp.o:			$(INCS)
