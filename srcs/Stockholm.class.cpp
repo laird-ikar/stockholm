@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:51:12 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:55:33 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,17 +118,16 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
-		char *buffer = new char[1024];
-		bzero(buffer, 1024);
+		char buffer;
+		buffer = 0;
 		int ret = 0;
+		int i = 0;
 		std::string file_data = "";
-		while ((ret = read(fd_in, buffer, 1024)) > 0)
+		while ((ret = read(fd_in, &buffer, 1)) > 0)
 		{
-			for (int i = 0; i < ret; i++)
-			{
-				buffer[i] ^= this->_key[i % this->_key.length()];
-			}
-			write(fd_out, buffer, ret);
+			buffer ^= this->_key[i % this->_key.length()];
+			write(fd_out, &buffer, 1);
+			i++;
 		}
 		if (ret == -1)
 		{
@@ -180,10 +179,10 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
-		char *buffer = new char[1024];
+		char *buffer = new char[1];
 		int ret = 0;
 		std::string file_data = "";
-		while ((ret = read(fd, buffer, 1024)) > 0)
+		while ((ret = read(fd, buffer, 1)) > 0)
 		{
 			file_data += buffer;
 		}
