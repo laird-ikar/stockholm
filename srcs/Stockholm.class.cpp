@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 16:32:38 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:39:13 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,6 @@ void	Stockholm::setKey(std::string key)
 
 void	Stockholm::run(void)
 {
-	std::cout << this->_help << std::endl;
-	std::cout << this->_version << std::endl;
-	std::cout << this->_silent << std::endl;
-	std::cout << this->_reverse << std::endl;
 	if (this->_help)
 		this->_printHelp();
 	else if (this->_version)
