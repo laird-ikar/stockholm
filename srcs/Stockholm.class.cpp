@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 16:11:04 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:12:55 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,8 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 			//read the next 1024 bytes, unless it's the end of the file
 			if (ret == 1024)
 				ret = read(fd_in, buffer, 1024);
+			else
+				ret = 0;
 		}
 		if (ret == -1)
 		{
