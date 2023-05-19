@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 16:12:55 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:21:38 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,43 +110,71 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 		
 	//cipher the file
 	try {
-		int fd_in = open(path.c_str(), O_RDONLY);
-		int fd_out = open(path.c_str(), O_WRONLY);
-		if (fd_in == -1 || fd_out == -1)
+		// int fd_in = open(path.c_str(), O_RDONLY);
+		// int fd_out = open(path.c_str(), O_WRONLY);
+		// if (fd_in == -1 || fd_out == -1)
+		// {
+		// 	// std::cout << "Error while opening file " << path << std::endl;
+		// 	return ;
+		// }
+		// char *buffer = new char[1024];
+		// bzero(buffer, 1024);
+		// int ret = 0;
+		// std::string file_data = "";
+		// ret = read(fd_in, buffer, 1024);
+		// while (ret > 0)
+		// {
+		// 	for (int i = 0; i < ret; i++)
+		// 	{
+		// 		buffer[i] ^= this->_key[i % this->_key.length()];
+		// 	}
+
+		// 	//read the next 1024 bytes, unless it's the end of the file
+		// 	if (ret == 1024)
+		// 		ret = read(fd_in, buffer, 1024);
+		// 	else
+		// 		ret = 0;
+		// }
+		// if (ret == -1)
+		// {
+		// 	// std::cout << "Error while reading file " << path << std::endl;
+		// 	return ;
+		// }
+		// close(fd_in);
+		// close(fd_out);
+		
+		// //remove the .ft extension to the file
+		// std::filesystem::path new_path = path;
+		// std::filesystem::rename(path, new_path.replace_extension(""));
+
+		auto new_path = path;
+		new_path.replace_extension("");
+
+		int fd_old = open(path.c_str(), O_RDONLY);
+		int fd_new = open(new_path.c_str(), O_WRONLY | O_CREAT);
+
+		if (fd_old == -1 || fd_new == -1)
 		{
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
+
 		char *buffer = new char[1024];
 		bzero(buffer, 1024);
 		int ret = 0;
-		std::string file_data = "";
-		ret = read(fd_in, buffer, 1024);
-		while (ret > 0)
+		int	key_index = 0;
+		while ((ret = read(fd_old, buffer, 1024)) > 0)
 		{
 			for (int i = 0; i < ret; i++)
 			{
-				buffer[i] ^= this->_key[i % this->_key.length()];
+				buffer[i] ^= this->_key[key_index];
+				key_index = (key_index + 1) % this->_key.length();
 			}
-
-			//read the next 1024 bytes, unless it's the end of the file
-			if (ret == 1024)
-				ret = read(fd_in, buffer, 1024);
-			else
-				ret = 0;
+			write(fd_new, buffer, ret);
 		}
-		if (ret == -1)
-		{
-			// std::cout << "Error while reading file " << path << std::endl;
-			return ;
-		}
-		close(fd_in);
-		close(fd_out);
-		
-		//remove the .ft extension to the file
-		std::filesystem::path new_path = path;
-		std::filesystem::rename(path, new_path.replace_extension(""));
-
+		close(fd_old);
+		close(fd_new);
+		remove(path.c_str());
 		if (!this->_silent)
 			std::cout << "Deciphering file " << path << std::endl;
 	} catch(...) {
@@ -179,35 +207,34 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 	
 	//cipher the file
 	try {
-		int fd = open(path.c_str(), O_RDWR);
-		if (fd == -1)
+		auto new_path = path;
+		new_path.replace_extension(path.extension().string() + ".ft");
+
+		int fd_old = open(path.c_str(), O_RDONLY);
+		int fd_new = open(new_path.c_str(), O_WRONLY | O_CREAT);
+
+		if (fd_old == -1 || fd_new == -1)
 		{
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
-		char *buffer = new char[1024];
-		int ret = 0;
-		std::string file_data = "";
-		while ((ret = read(fd, buffer, 1024)) > 0)
-		{
-			file_data += buffer;
-		}
-		if (ret == -1)
-		{
-			// std::cout << "Error while reading file " << path << std::endl;
-			return ;
-		}
-		for (unsigned int i = 0; i < file_data.length(); i++)
-		{
-			file_data[i] ^= this->_key[i % this->_key.length()];
-		}
-		lseek(fd, 0, SEEK_SET);
-		write(fd, file_data.c_str(), file_data.length());	
-		close(fd);
 
-		//add the .ft extension to the file
-		std::filesystem::path newPath = path;
-		std::filesystem::rename(path, newPath += ".ft");
+		char *buffer = new char[1024];
+		bzero(buffer, 1024);
+		int ret = 0;
+		int	key_index = 0;
+		while ((ret = read(fd_old, buffer, 1024)) > 0)
+		{
+			for (int i = 0; i < ret; i++)
+			{
+				buffer[i] ^= this->_key[key_index];
+				key_index = (key_index + 1) % this->_key.length();
+			}
+			write(fd_new, buffer, ret);
+		}
+		close(fd_old);
+		close(fd_new);
+		remove(path.c_str());
 
 		if (!this->_silent)
 			std::cout << "Ciphering file " << path << std::endl;
