@@ -6,13 +6,13 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:29:08 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 12:48:02 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 12:49:15 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define VERSION "0.2.0"
+#define VERSION "0.2.1"
 
 /*
 #define RANSOMWARE_EXTENSIONS \
