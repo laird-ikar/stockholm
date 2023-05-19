@@ -13,14 +13,14 @@ INCS		=	$(addsuffix .hpp, $(addprefix $(INCS_FOLD), $(INCS_FILE)))
 
 OBJS		=	$(SRCS:.cpp=.o)
 
-CC			=	@c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
-RM			=	@rm -f
+CC			=	c++
+CFLAGS		=	-Wall -Wextra -Werror
+RM			=	rm -f
 
 all:			$(NAME)
 
 $(NAME):		$(OBJS) $(CLASS_OBJS) $(INCS)
-				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+				$(CC) $(CFLAGS) $(OBJS) -I -o $(NAME)
 
 .cpp.o:			$(INCS)
 				$(CC) $(CFLAGS) -c $< -o $@

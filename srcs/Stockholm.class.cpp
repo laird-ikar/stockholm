@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 10:40:40 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 11:30:24 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	Stockholm::run(void)
 	else if (this->_reverse)
 		this->_decipher();
 	else
-		this->_cipher();
+		this->_cipher(this->_path);
 }
 
 void	Stockholm::_printHelp(void)
@@ -86,5 +86,8 @@ void	Stockholm::_printVersion(void)
 void	Stockholm::_decipher(void)
 {}
 
-void	Stockholm::_cipher(void)
-{}
+void	Stockholm::_cipher(std::filesystem::path path)
+{
+	std::cout << "ciphering " << path << std::endl;
+	std::cout << std::filesystem::exists(path) << std::endl;
+}

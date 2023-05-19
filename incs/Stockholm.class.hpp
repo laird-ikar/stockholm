@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 10:28:54 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 11:30:24 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@ class Stockholm;
 
 #include <string>
 #include <iostream>
+#include <filesystem>
+
 #include "constants.hpp"
 
 class Stockholm
@@ -25,6 +27,7 @@ private:
 	bool _silent;
 	bool _reverse;
 	std::string _key;
+	std::filesystem::path _path{"~/infection"};
 
 	void _printHelp(void);
 	void _printVersion(void);
