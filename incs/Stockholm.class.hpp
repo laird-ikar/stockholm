@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:43:26 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:23:50 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:24:57 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ class Stockholm;
 #include <string>
 #include <iostream>
 #include <filesystem>
+#include <vector>
 
 #include "constants.hpp"
 
