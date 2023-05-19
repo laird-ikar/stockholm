@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:07:22 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:09:28 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		int fd = open(path.c_str(), O_RDWR);
 		if (fd == -1)
 		{
-			std::cout << "Error while opening file " << path << std::endl;
+			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
 		char *buffer = new char[1024];
@@ -138,16 +138,14 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		}
 		if (ret == -1)
 		{
-			std::cout << "Error while reading file " << path << std::endl;
+			// std::cout << "Error while reading file " << path << std::endl;
 			return ;
 		}
 		for (unsigned int i = 0; i < file_data.length(); i++)
 		{
-			std::cout << i << std::endl;
-			std::cout << this->_key.length() << std::endl;
-			std::cout << file_data[i] << " " << this->_key[i % this->_key.length()] << std::endl;
 			file_data[i] ^= this->_key[i % this->_key.length()];
 		}
+		lseek(fd, 0, SEEK_SET);
 		write(fd, file_data.c_str(), file_data.length());	
 		close(fd);
 		//add the .ft extension to the file
