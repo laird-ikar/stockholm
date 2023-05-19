@@ -5,7 +5,7 @@
 This project is a 42 project that emulate some functionnality of the famous ransomware `Wannacry`.
 This project is for educational purposes only. You should never use this type of program for malicious purposes.
 
-## How to use it ?
+## How to use it
 
 First, compile the project via `make`;
 
