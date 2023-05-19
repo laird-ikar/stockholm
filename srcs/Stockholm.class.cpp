@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 13:17:30 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 13:23:50 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,12 @@ void	Stockholm::_cipher(std::filesystem::path path)
 
 void	Stockholm::_cipherFile(std::filesystem::path path)
 {
-	//check if the file path extension is in the RANSOMWARE_EXTENSIONS
-	(void) path;
+	//check if the file path extension is in the _extensions vector
+	if (std::find(this->_extensions.begin(), this->_extensions.end(), path.extension()) == this->_extensions.end())
+		return ;
+
+	std::cout << "Ciphering file " << path << std::endl;
+	//ciphe the file
+
+	//rename the file
 }
