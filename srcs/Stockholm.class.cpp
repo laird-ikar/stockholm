@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:28:41 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:36:56 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,9 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 	
 	//cipher the file
 	try {
-		int fd = open(path.c_str(), O_RDWR);
-		if (fd == -1)
+		int fd_in = open(path.c_str(), O_RDONLY);
+		int fd_out = open(path.c_str(), O_WRONLY);
+		if (fd_in == -1 || fd_out == -1)
 		{
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
@@ -120,24 +121,21 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 		char *buffer = new char[1024];
 		int ret = 0;
 		std::string file_data = "";
-		while ((ret = read(fd, buffer, 1024)) > 0)
+		while ((ret = read(fd_in, buffer, 1024)) > 0)
 		{
-			file_data += buffer;
+			for (int i = 0; i < ret; i++)
+			{
+				buffer[i] ^= this->_key[i % this->_key.length()];
+			}
+			write(fd_out, buffer, ret);
 		}
 		if (ret == -1)
 		{
 			// std::cout << "Error while reading file " << path << std::endl;
 			return ;
 		}
-		std::cout << file_data << std::endl;
-		for (unsigned int i = 0; i < file_data.length(); i++)
-		{
-			file_data[i] ^= this->_key[i % this->_key.length()];
-		}
-		std::cout << file_data << std::endl;
-		lseek(fd, 0, SEEK_SET);
-		write(fd, file_data.c_str(), file_data.length());	
-		close(fd);
+		close(fd_in);
+		close(fd_out);
 		//remove the .ft extension to the file
 		std::filesystem::path new_path = path;
 		std::filesystem::rename(path, new_path.replace_extension(""));
