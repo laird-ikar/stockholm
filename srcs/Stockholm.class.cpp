@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:04:56 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:06:35 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,8 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 		}
 		for (unsigned int i = 0; i < file_data.length(); i++)
 		{
+			std::cout << i << std::endl;
+			std::cout << this->_key.length() << std::endl;
 			std::cout << file_data[i] << " " << this->_key[i % this->_key.length()] << std::endl;
 			file_data[i] ^= this->_key[i % this->_key.length()];
 		}
