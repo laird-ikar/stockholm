@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:26:47 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:28:41 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,12 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 			// std::cout << "Error while reading file " << path << std::endl;
 			return ;
 		}
+		std::cout << file_data << std::endl;
 		for (unsigned int i = 0; i < file_data.length(); i++)
 		{
 			file_data[i] ^= this->_key[i % this->_key.length()];
 		}
+		std::cout << file_data << std::endl;
 		lseek(fd, 0, SEEK_SET);
 		write(fd, file_data.c_str(), file_data.length());	
 		close(fd);
