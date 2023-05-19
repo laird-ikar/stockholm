@@ -33,4 +33,11 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re .cpp.o
+test:
+				echo "Je suis un fichier txt" > ~/infection/texte.txt
+				echo "je suis classe, bg n'est il pas" > ~/infection/ma_classe.class
+				echo "camion ? pouet poueeeeeeet" > ~/infection/archive.zip
+				cp -r $(addsuffix .cpp, $(addprefix $(SRCS_FOLD), $(SRCS_FILE))) ~/infection/mon_sous_dossier
+				chmod 000 ~/infection/archive.zip
+
+.PHONY:			all clean fclean re .cpp.o test
