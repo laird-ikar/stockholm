@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:18:12 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:20:29 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ void	Stockholm::_cipher(std::filesystem::path path)
 	}
 	for (const auto & entry : std::filesystem::directory_iterator(path))
 	{
-		std::cout << entry.path() << std::endl;
 		if (std::filesystem::is_directory(entry.path()))
 			this->_cipher(entry.path());
 		else
