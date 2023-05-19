@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 15:36:56 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/19 15:51:12 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	Stockholm::_decipherFile(std::filesystem::path path)
 			return ;
 		}
 		char *buffer = new char[1024];
+		bzero(buffer, 1024);
 		int ret = 0;
 		std::string file_data = "";
 		while ((ret = read(fd_in, buffer, 1024)) > 0)
