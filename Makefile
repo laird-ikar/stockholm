@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 17:29:55 by bguyot            #+#    #+#              #
-#    Updated: 2023/05/20 14:30:18 by bguyot           ###   ########.fr        #
+#    Updated: 2023/05/20 14:35:04 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,15 +48,25 @@ re:				fclean all
 test:
 				@rm -rf ~/infection/*
 				@rm -rf ~/dossier_a_ne_pas_toucher
+
 				@mkdir -p ~/infection/mon_sous_dossier
+
 				@echo "Je suis un fichier txt" > ~/infection/texte.txt
+
 				@echo "je suis classe, bg n'est il pas" > ~/infection/ma_classe.class
+
 				@echo "camion ? pouet poueeeeeeet" > ~/infection/archive.zip
+				@chmod 000 ~/infection/archive.zip
+
 				@mkdir -p ~/dossier_a_ne_pas_toucher
 				@echo "ohlala je ne devrai pas etre touché" > ~/dossier_a_ne_pas_toucher/je_suis_un_fichier.txt
 				@ln -s ~/dossier_a_ne_pas_toucher/je_suis_un_fichier.txt ~/infection/lien_symbolique.cpp 
+
+				@mkdir -p ~/infection/lien_symbolique_dossier
+				@ln -s ~/dossier_a_ne_pas_toucher/ ~/infection/lien_symbolique_dossier
+
 				@cp -r $(addsuffix .cpp, $(addprefix $(SRCS_FOLD), $(SRCS_FILE))) ~/infection/mon_sous_dossier
-				@chmod 000 ~/infection/archive.zip
+
 				@printf "Fichiers tests créés dans ~/infection"
 
 .PHONY:			all clean fclean re .cpp.o test
