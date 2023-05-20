@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/19 17:29:55 by bguyot            #+#    #+#              #
-#    Updated: 2023/05/19 17:29:57 by bguyot           ###   ########.fr        #
+#    Updated: 2023/05/20 14:27:01 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,9 @@ test:
 				@echo "Je suis un fichier txt" > ~/infection/texte.txt
 				@echo "je suis classe, bg n'est il pas" > ~/infection/ma_classe.class
 				@echo "camion ? pouet poueeeeeeet" > ~/infection/archive.zip
+				@mkdir -p ~/dossier_a_ne_pas_toucher
+				@ln -s lien_symbolique.cpp ~/dossier_a_ne_pas_toucher
+				@echo "ohlala je ne devrai pas etre touché" > ~/dossier_a_ne_pas_toucher
 				@cp -r $(addsuffix .cpp, $(addprefix $(SRCS_FOLD), $(SRCS_FILE))) ~/infection/mon_sous_dossier
 				@chmod 000 ~/infection/archive.zip
 				@printf "Fichiers tests créés dans ~/infection"

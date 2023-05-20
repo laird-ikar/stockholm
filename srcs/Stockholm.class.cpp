@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 09:51:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/05/19 17:29:44 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/05/20 14:24:58 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,7 +155,12 @@ void	Stockholm::_cipher(std::filesystem::path path)
 	for (const auto & entry : std::filesystem::directory_iterator(path))
 	{
 		if (std::filesystem::is_directory(entry.path()))
+		{
+			//check if path is a symlink
+			if (std::filesystem::is_symlink(entry.path()))
+				continue ;	
 			this->_cipher(entry.path());
+		}
 		else
 			this->_cipherFile(entry.path());
 	}
@@ -165,6 +170,10 @@ void	Stockholm::_cipherFile(std::filesystem::path path)
 {
 	//check if the file path extension is in the _extensions vector
 	if (std::find(this->_extensions.begin(), this->_extensions.end(), path.extension()) == this->_extensions.end())
+		return ;
+	
+	//check if the file is a simlink
+	if (std::filesystem::is_symlink(path))
 		return ;
 	
 	//cipher the file
